@@ -66,4 +66,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     {
         return true;
     }
+
+    public function warehouse() {
+        return $this->hasOne(Warehouse::class, 'manager_id');
+    }
 }

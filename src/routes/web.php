@@ -19,3 +19,14 @@ Livewire::setScriptRoute(function ($handle) {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/debug-role', function () {
+    $user = \App\Models\User::where('email', 'gudang-a@admin.com')->first();
+
+    return [
+        'id' => $user->id,
+        'name' => $user->name,
+        'roles' => $user->getRoleNames(),
+        'guard_name' => $user->roles->pluck('guard_name'),
+    ];
+});
